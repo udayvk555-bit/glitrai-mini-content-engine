@@ -29,9 +29,15 @@ async function generate() {
     const product = document.getElementById("product").value;
     const description = document.getElementById("description").value;
 
-    const response = await fetch(`http://127.0.0.1:8000/generate?product_name=${encodeURIComponent(product)}&description=${encodeURIComponent(description)}`,{
-        method:"POST"
-    });
+    const response = await fetch(
+  "https://glitrai-mini-content-engine-msmz.onrender.com/generate?product_name="
+  + encodeURIComponent(product)
+  + "&description="
+  + encodeURIComponent(description),
+  {
+    method: "POST"
+  }
+);
 
     const data = await response.json();
 
