@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GlitrAI Mini Content Engine</title>
+</head>
+<body>
+
+<h2>GlitrAI Mini Content Engine</h2>
+
+<h3>Generate Image</h3>
+
+<input type="text" id="product" placeholder="Product Name"><br><br>
+
+<textarea id="description" placeholder="Product Description"></textarea><br><br>
+
+<button onclick="generate()">Generate</button>
+
+<h3>Result</h3>
+
+<pre id="output"></pre>
+
+<br>
+
+<img id="image" width="300" style="display:none;border:1px solid black;">
+
+<script>
+async function generate() {
+
+    const product = document.getElementById("product").value;
+    const description = document.getElementById("description").value;
+
+    const response = await fetch(`http://127.0.0.1:8000/generate?product_name=${encodeURIComponent(product)}&description=${encodeURIComponent(description)}`,{
+        method:"POST"
+    });
+
+    const data = await response.json();
+
+    document.getElementById("output").textContent =
+    JSON.stringify(data, null, 2);
+
+document.getElementById("image").src = data.image_url;
+document.getElementById("image").style.display = "block";
+}
+</script>
+
+</body>
+</html>
