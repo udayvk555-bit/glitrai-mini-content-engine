@@ -1,7 +1,8 @@
 fastapi
 uvicorn
-groq
-python-dotenv
 sqlalchemy
+python-dotenv
+requests
+openai
+groq
 pydantic
-Pillow
